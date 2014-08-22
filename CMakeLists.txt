@@ -31,7 +31,7 @@ option(DEBUG                "Debug mode"                            OFF)
 option(TBB_USE_EXTERNAL     "Use external TBB"                      OFF)
 #option(USE_STD_MALLOC       "Use standard malloc instead of TBB"    OFF)
 #option(USE_TBB_MALLOC       "Use included TBB malloc"               OFF)
-option(ACE_USE_EXTERNAL     "Use external ACE"                      ON)
+option(ACE_USE_EXTERNAL     "Use external ACE"                      OFF)
 
 if(WIN32)
   if(PLATFORM MATCHES X86) # 32-bit

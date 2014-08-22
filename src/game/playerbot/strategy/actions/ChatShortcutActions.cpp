@@ -16,7 +16,8 @@ bool FollowChatShortcutAction::Execute(Event event)
     ai->ChangeStrategy("-follow,-passive", BOT_STATE_COMBAT);
     if (bot->GetMapId() != master->GetMapId() || bot->GetDistance(master) > sPlayerbotAIConfig.sightDistance)
     {
-        ai->TellMaster("I will not follow you - too far away");
+		if(!ai->DoTeleport(*master))
+			ai->TellMaster("I will not follow you - too far away");
         return true;
     }
     ai->TellMaster("Following");

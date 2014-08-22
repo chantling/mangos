@@ -719,6 +719,24 @@ bool PlayerbotAI::TellMaster(string text, PlayerbotSecurityLevel securityLevel)
     return true;
 }
 
+bool PlayerbotAI::DoTeleport(WorldObject& /*obj*/)
+{
+	Player* master = GetMaster();
+
+	if (master->InArena())
+        return false;
+
+    //m_ignoreAIUpdatesUntilTime = time(NULL) + 6;
+    PlayerbotChatHandler ch(GetMaster());
+    if (!ch.teleport(*bot))
+    {
+        //ch.sysmessage(".. could not be teleported ..");
+        // DEBUG_LOG ("[PlayerbotAI]: DoTeleport - %s failed to teleport", m_bot->GetName() );
+        return false;
+    }
+    return true;
+}
+
 bool IsRealAura(Player* bot, AuraPair* aura, Unit* unit)
 {
     if (!aura)
