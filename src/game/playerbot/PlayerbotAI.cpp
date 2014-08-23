@@ -521,6 +521,14 @@ bool PlayerbotAI::HasStrategy(string name, BotState type)
     return engines[type]->HasStrategy(name);
 }
 
+bool PlayerbotAI::TeleportToMaster()
+{
+	Player* master = GetMaster();
+	if (!DoTeleport(*master))
+		return false;
+	return true;
+}
+
 void PlayerbotAI::ResetStrategies()
 {
     for (int i = 0 ; i < BOT_STATE_MAX; i++)
@@ -730,7 +738,7 @@ bool PlayerbotAI::DoTeleport(WorldObject& /*obj*/)
     PlayerbotChatHandler ch(GetMaster());
     if (!ch.teleport(*bot))
     {
-        //ch.sysmessage(".. could not be teleported ..");
+        ch.sysmessage(".. could not be teleported ..");
         // DEBUG_LOG ("[PlayerbotAI]: DoTeleport - %s failed to teleport", m_bot->GetName() );
         return false;
     }

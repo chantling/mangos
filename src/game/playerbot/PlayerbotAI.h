@@ -120,6 +120,7 @@ public:
     void ChangeStrategy(string name, BotState type);
     bool ContainsStrategy(StrategyType type);
     bool HasStrategy(string name, BotState type);
+	bool TeleportToMaster();
     void ResetStrategies();
     void ReInitCurrentEngine();
     void Reset();

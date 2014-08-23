@@ -18,6 +18,7 @@ bool FollowChatShortcutAction::Execute(Event event)
     {
 		if(!ai->DoTeleport(*master))
 			ai->TellMaster("I will not follow you - too far away");
+		ai->SetNextCheckDelay(3000);
         return true;
     }
     ai->TellMaster("Following");

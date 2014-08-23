@@ -186,8 +186,9 @@ bool MovementAction::Follow(Unit* target, float distance, float angle)
             abs(bot->GetPositionZ() - target->GetPositionZ()) >= sPlayerbotAIConfig.spellDistance)
     {
         mm.Clear();
-        float x = bot->GetPositionX(), y = bot->GetPositionY(), z = target->GetPositionZ();
-        if (target->GetMapId() && bot->GetMapId() != target->GetMapId())
+		//float x = bot->GetPositionX(), y = bot->GetPositionY(), z = target->GetPositionZ();
+        float x = target->GetPositionX(), y = target->GetPositionY(), z = target->GetPositionZ();
+		if (target->GetMapId() && bot->GetMapId() != target->GetMapId())
         {
             bot->TeleportTo(target->GetMapId(), x, y, z, bot->GetOrientation());
         }
@@ -199,6 +200,11 @@ bool MovementAction::Follow(Unit* target, float distance, float angle)
         AI_VALUE(LastMovement&, "last movement").Set(target);
         return true;
     }
+	else if (bot->GetDistance2d(target->GetPositionX(), target->GetPositionY()) > sPlayerbotAIConfig.sightDistance)
+	{
+		ai->DoTeleport(*target);
+		ai->SetNextCheckDelay(3000);
+	}
 
     if (!IsMovingAllowed(target))
         return false;
