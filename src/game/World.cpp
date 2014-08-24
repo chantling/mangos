@@ -693,6 +693,8 @@ void World::LoadConfigSettings(bool reload)
 
     setConfigMinMax(CONFIG_UINT32_GEAR_CALC_BASE, "Player.GSCalculationBase", 190, 1, 384);
 
+	setConfigMinMax(CONFIG_FLOAT_PLAYER_SPEED_MULT, "PlayerSpeedMult", 1.0f, 0.1f, 10.0f);
+
     setConfigMinMax(CONFIG_FLOAT_CROWDCONTROL_HP_BASE, "CrowdControlHPBase", 0.1f, 0.0f, 1.0f);
 
     setConfig(CONFIG_BOOL_RESILIENCE_ALTERNATIVE_CALCULATION, "ResilienceAlternativeCalculation", false);

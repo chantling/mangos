@@ -10559,7 +10559,11 @@ void Unit::UpdateSpeed(UnitMoveType mtype, bool forced, float ratio)
 
 float Unit::GetSpeed( UnitMoveType mtype ) const
 {
-    return m_speed_rate[mtype]*baseMoveSpeed[mtype];
+	// Adjust player speed based on 'PlayerSpeedMult' in mangosd.conf
+	if (GetTypeId() == TYPEID_PLAYER)
+		return (m_speed_rate[mtype]*baseMoveSpeed[mtype]*sWorld.getConfig(CONFIG_FLOAT_PLAYER_SPEED_MULT));
+    else
+		return m_speed_rate[mtype]*baseMoveSpeed[mtype];
 }
 
 struct SetSpeedRateHelper
